@@ -53,7 +53,7 @@ const Dashboard = () => {
       field: "cost",
       headerName: "Cost",
       flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
+      renderCell: (params) => `₹ ${Number(params.value).toFixed(2)}`,
     },
   ];
 
@@ -188,7 +188,7 @@ const Dashboard = () => {
           borderRadius="0.55rem"
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
+            Sales Report By Category
           </Typography>
           <BreakdownChart isDashboard={true} />
           <Typography
@@ -196,8 +196,8 @@ const Dashboard = () => {
             fontSize="0.8rem"
             sx={{ color: theme.palette.secondary[200] }}
           >
-            Breakdown of real states and information via category for revenue
-            made for this year and total sales.
+            Analysis of actual state and data breakdown by category for this
+            year's revenue and overall sales.
           </Typography>
         </Box>
       </Box>
