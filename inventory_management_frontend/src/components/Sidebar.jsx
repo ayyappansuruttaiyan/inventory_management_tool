@@ -31,7 +31,8 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-import profileImage from "assets/logo.png";
+import logoImage from "assets/logo.png";
+import profileImage from "assets/profile.jpeg";
 
 const navItems = [
   {
@@ -39,7 +40,7 @@ const navItems = [
     icon: <HomeOutlined />,
   },
   {
-    text: "Client Facing",
+    text: "CLIENT",
     icon: null,
   },
   {
@@ -59,7 +60,7 @@ const navItems = [
     icon: <PublicOutlined />,
   },
   {
-    text: "Sales",
+    text: "SALES",
     icon: null,
   },
   {
@@ -79,7 +80,7 @@ const navItems = [
     icon: <PieChartOutlined />,
   },
   {
-    text: "Management",
+    text: "MANAGEMENT",
     icon: null,
   },
   {
@@ -134,7 +135,7 @@ const Sidebar = ({
                   <Box
                     component="img"
                     alt="profile"
-                    src={profileImage}
+                    src={logoImage}
                     height="50px"
                     width="50px"
                     borderRadius="50%"
@@ -202,9 +203,13 @@ const Sidebar = ({
             </List>
           </Box>
 
-          <Box position="absolute" bottom="2rem">
+          <Box position="relative" top="1rem">
             <Divider />
-            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+            <FlexBetween
+              textTransform="none"
+              gap="1rem"
+              m="1.5rem 2rem 1rem 3rem"
+            >
               <Box
                 component="img"
                 alt="profile"
