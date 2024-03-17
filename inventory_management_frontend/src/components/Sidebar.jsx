@@ -27,6 +27,7 @@ import {
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
   PieChartOutlined,
+  PlusOneRounded,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -43,6 +44,7 @@ const navItems = [
     text: "CLIENT",
     icon: null,
   },
+
   {
     text: "Products",
     icon: <ShoppingCartOutlined />,

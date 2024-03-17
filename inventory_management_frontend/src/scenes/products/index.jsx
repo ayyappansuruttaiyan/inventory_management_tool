@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { EditOutlined, DeleteOutlineOutlined } from "@mui/icons-material";
 import {
   Box,
   Card,
@@ -10,9 +11,12 @@ import {
   Rating,
   useTheme,
   useMediaQuery,
+  IconButton,
 } from "@mui/material";
 import Header from "components/Header";
 import { useGetProductsQuery } from "state/api";
+import FlexBetween from "components/FlexBetween";
+import BasicModal from "components/Modal";
 
 const Product = ({
   _id,
@@ -36,13 +40,39 @@ const Product = ({
       }}
     >
       <CardContent>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color={theme.palette.secondary[700]}
-          gutterBottom
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignContent: "center",
+            alignItems: "center",
+          }}
         >
-          {category}
-        </Typography>
+          <Typography
+            sx={{ fontSize: 14 }}
+            color={theme.palette.secondary[700]}
+            gutterBottom
+          >
+            {category}
+          </Typography>
+          <Typography
+            sx={{ fontSize: 14 }}
+            color={theme.palette.secondary[700]}
+            gutterBottom
+          >
+            <IconButton>
+              <EditOutlined
+                sx={{ fontSize: "15px", color: theme.palette.secondary[700] }}
+              />
+            </IconButton>
+            <IconButton>
+              <DeleteOutlineOutlined
+                sx={{ fontSize: "15px", color: theme.palette.secondary[700] }}
+              />
+            </IconButton>
+          </Typography>
+        </Box>
+
         <Typography variant="h5" component="div">
           {name}
         </Typography>
@@ -91,7 +121,11 @@ const Products = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="PRODUCTS" subtitle="See your list of products." />
+      <FlexBetween>
+        <Header title="PRODUCTS" subtitle="See your list of products" />
+        <BasicModal />
+      </FlexBetween>
+
       {data || !isLoading ? (
         <Box
           mt="20px"
