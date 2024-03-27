@@ -17,6 +17,8 @@ import Breakdown from "scenes/breakdown";
 import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import AddProduct from "scenes/addproduct";
+import Login from "components/Login";
+import Register from "components/Register";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -27,8 +29,10 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route element={<Layout />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/addproduct" element={<AddProduct />} />
               <Route path="/products" element={<Products />} />

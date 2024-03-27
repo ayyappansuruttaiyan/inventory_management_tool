@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import AddProduct from "./AddProduct";
 import { useTheme } from "@emotion/react";

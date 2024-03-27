@@ -55,6 +55,21 @@ export const api = createApi({
       query: () => "general/dashboard",
       providesTags: ["Dashboard"],
     }),
+    addProduct: build.mutation({
+      query: ({ name, price, description, category, rating, supply }) => ({
+        url: "client/addproduct",
+        method: "POST",
+        body: { name, price, description, category, rating, supply }, // Product data to be sent to the server
+      }),
+      providesTags: ["Products"], // Update the Products tag to include the new product after adding it
+    }),
+    deleteProduct: build.mutation({
+      query: (id) => ({
+        url: `client/deleteproduct/${id}`,
+        method: "DELETE",
+      }),
+      providesTags: ["Products"], // Update the Products tag to include the new product after DELETING it
+    }),
   }),
 });
 
@@ -68,4 +83,7 @@ export const {
   useGetAdminsQuery,
   useGetUserPerformanceQuery,
   useGetDashboardQuery,
+  useAddProductMutation,
+  useDeleteProductMutation,
+  queryCache,
 } = api;

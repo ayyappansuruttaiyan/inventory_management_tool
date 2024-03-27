@@ -5,11 +5,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SelectField() {
-  const [categories, setCategories] = React.useState("");
-
+export default function SelectField({ value, onChange }) {
+  const categories = ["misc", "accessories", "clothing"];
   const handleChange = (event) => {
-    setCategories(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
@@ -19,13 +18,15 @@ export default function SelectField() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={categories}
-          label="Categories"
+          value={value}
           onChange={handleChange}
+          label="Categories"
         >
-          <MenuItem value={10}>Clothing</MenuItem>
-          <MenuItem value={20}>Accessories</MenuItem>
-          <MenuItem value={30}>Misc</MenuItem>
+          {categories.map((category, index) => (
+            <MenuItem key={index} value={category}>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

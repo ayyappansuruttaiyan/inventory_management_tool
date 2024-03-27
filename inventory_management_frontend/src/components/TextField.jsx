@@ -3,11 +3,18 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { FormControl } from "@mui/material";
 
-export default function BasicTextFields({ title }) {
+export default function BasicTextFields({ title, value, onChange }) {
   return (
     <Box component="form" noValidate autoComplete="off">
       <FormControl fullWidth>
-        <TextField id="outlined-basic" label={title} variant="outlined" />
+        <TextField
+          required={true}
+          id="outlined-basic"
+          value={value}
+          onChange={onChange}
+          label={title}
+          variant="outlined"
+        />
       </FormControl>
     </Box>
   );

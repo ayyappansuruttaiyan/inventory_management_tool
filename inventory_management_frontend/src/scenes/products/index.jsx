@@ -14,9 +14,9 @@ import {
   IconButton,
 } from "@mui/material";
 import Header from "components/Header";
-import { useGetProductsQuery } from "state/api";
 import FlexBetween from "components/FlexBetween";
 import BasicModal from "components/Modal";
+import { useGetProductsQuery, useDeleteProductMutation } from "state/api";
 
 const Product = ({
   _id,
@@ -30,7 +30,11 @@ const Product = ({
 }) => {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [deleteProduct] = useDeleteProductMutation();
 
+  const handleDelete = async (productId) => {
+    await deleteProduct(_id);
+  };
   return (
     <Card
       sx={{
@@ -60,12 +64,12 @@ const Product = ({
             color={theme.palette.secondary[700]}
             gutterBottom
           >
-            <IconButton>
+            <IconButton onClick={<BasicModal />}>
               <EditOutlined
                 sx={{ fontSize: "15px", color: theme.palette.secondary[700] }}
               />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               <DeleteOutlineOutlined
                 sx={{ fontSize: "15px", color: theme.palette.secondary[700] }}
               />
