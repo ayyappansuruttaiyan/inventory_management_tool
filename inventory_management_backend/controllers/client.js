@@ -4,10 +4,10 @@ import User from "../models/User.js";
 import Transaction from "../models/Transaction.js";
 import getCountryIso3 from "country-iso-2-to-3";
 
+//PRODUCTS
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
-
     const productsWithStats = await Promise.all(
       products.map(async (product) => {
         const stat = await ProductStat.find({
@@ -26,6 +26,42 @@ export const getProducts = async (req, res) => {
   }
 };
 
+export const addProduct = async (req, res) => {
+  const { name, price, description, category, rating, supply } = req.body;
+
+  try {
+    const product = await Product.create({
+      name,
+      price,
+      description,
+      category,
+      rating,
+      supply,
+    });
+    await product.save();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    } else {
+      const deletedProduct = await Product.deleteOne({ _id: id });
+      res.status(200).json({ message: "Product deleted successfully" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// CUSTOMERS
 export const getCustomers = async (req, res) => {
   try {
     const customers = await User.find({ role: "user" }).select("-password");
@@ -35,6 +71,22 @@ export const getCustomers = async (req, res) => {
   }
 };
 
+export const addCustomers = async (req, res) => {
+  const { name, email, password } = req.body;
+  console.log(email);
+  let user = await User.findOne({ email });
+  try {
+    if (user) {
+      res.status(400).send("user already registered");
+    }
+    user = new User({ name, email, password });
+    await user.save();
+    res.status(200).send(user);
+  } catch (error) {
+    console.error(error);
+  }
+};
+// TRANSACTIONS
 export const getTransactions = async (req, res) => {
   try {
     // sort should look like this: { "field": "userId", "sort": "desc"}
