@@ -86,6 +86,7 @@ function Register() {
         />
         <BasicTextFields
           title="Password "
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
